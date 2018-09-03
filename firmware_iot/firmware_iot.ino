@@ -15,14 +15,10 @@ const int DD2 = D2;
 int value = 0;
 
 void setup()
-{
-  Serial.begin(115200);
-  
+{ 
   pinMode(DD2, INPUT);
 
   value = digitalRead(DD2);
-
-  Serial.println(value);
 
   if(value > 0)
   {
