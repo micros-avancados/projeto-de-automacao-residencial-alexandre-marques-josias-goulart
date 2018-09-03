@@ -25,7 +25,7 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 
 void Operational::initSystem()
-{    
+{   
     Serial.begin(115200);
 
     Serial.println();
@@ -149,7 +149,7 @@ void Operational::sendTemp()
 {
     char MsgTemperaturaMQTT[10];
   
-    float analogValue = analogRead(outputpin);
+    float analogValue = (float(analogRead(outputpin)) * 5 / (1023)) / 0.01;
 
     if(isnan(analogValue))
     {
