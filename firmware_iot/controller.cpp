@@ -11,11 +11,9 @@
 #include <IRsend.h>
 #include <IRtimer.h>
 
-int recvPin = 2;
+const int pinoLedIR = D3;
 
-IRsend irsend(recvPin);
-
-const int pinoLedIR = 8; 
+IRsend irsend(pinoLedIR);
 
 uint16_t irLiga[]    = {4400, 4350, 600, 1550, 550, 500, 600, 1550, 600, 1600, 550, 500, 600, 500, 550, 1600, 550, 500, 600, 500, 550, 1600, 600, 450, 600, 500, 600, 1550, 600, 1550, 600, 500, 550, 1600, 600, 450, 600, 500, 600, 1550, 600, 1550, 600, 1600, 550, 1550, 600, 1600, 550, 1550, 600, 1600, 550, 1600, 550, 500, 600, 500, 550, 550, 550, 500, 600, 500, 600, 450, 600, 500, 600, 1550, 600, 500, 600, 450, 600, 500, 600, 450, 600, 500, 600, 500, 550, 1600, 550, 500, 600, 1550, 600, 1600, 550, 1600, 550, 1600, 550, 1600, 550, 1600, 550}; // SAMSUNG B24D3FC0
 uint16_t irDesliga[] = {4400, 4350, 600, 1550, 600, 500, 600, 1550, 550, 1600, 600, 450, 600, 500, 600, 1550, 600, 500, 600, 450, 600, 1600, 550, 500, 600, 500, 600, 1550, 550, 1600, 600, 450, 600, 1600, 550, 500, 600, 1550, 600, 1550, 600, 1550, 600, 1600, 550, 500, 600, 1550, 600, 1550, 600, 1550, 600, 500, 550, 550, 550, 500, 600, 500, 550, 1600, 550, 500, 600, 500, 600, 1550, 600, 1550, 600, 1550, 600, 500, 550, 500, 600, 500, 550, 550, 550, 500, 600, 500, 600, 450, 600, 500, 600, 1550, 600, 1550, 600, 1550, 600, 1550, 600, 1550, 600}; // SAMSUNG B24D7B84
@@ -32,7 +30,7 @@ void Controller::initController()
 
 void Controller::monitorController(float temp)
 {
-    if(temp > weather && contOn == 1)
+    if(temp < weather && contOn == 1)
     {
         irsend.sendRaw(irLiga, sizeof(irLiga) / sizeof(irLiga), khz); //Note the approach used to automatically calculate the size of the array.
         irsend.sendRaw(irLiga, sizeof(irLiga) / sizeof(irLiga), khz); //Note the approach used to automatically calculate the size of the array.

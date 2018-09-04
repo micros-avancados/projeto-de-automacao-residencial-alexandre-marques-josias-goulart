@@ -19,7 +19,7 @@ const char* mqttServer    = configs.wifiConfig.mqttServer; //"m12.cloudmqtt.com"
 const char* mqttUser      = configs.wifiConfig.mqttUser; // "ikgkgtgi";
 const char* mqttPassword  = configs.wifiConfig.mqttPassword; //"zXmgJfFXdbqp";
 const int   mqttPort      = 17382; //17382
-const char* mqttTopicSub  = configs.wifiConfig.mqttTopicSub; //"sensor/T1";
+const char* mqttTopicSub  = "sensor/T1";
 
 int finalSendMQTT = 0;
 
@@ -33,6 +33,8 @@ void Operational::initSystem()
 
     Serial.println();
     Serial.println("Iniciando o sistema...");
+
+    Serial.println(mqttUser);
 
     EEPROM.begin(512);
     

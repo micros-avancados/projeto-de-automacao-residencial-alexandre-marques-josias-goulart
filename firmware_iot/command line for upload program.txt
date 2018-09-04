@@ -1,0 +1,1 @@
+python espota.py -i <ESP IP address> -p <OTA port default 8266> -f "<.bin file path>" -d -r
