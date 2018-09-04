@@ -6,6 +6,9 @@
 
 #include "operational.h"
 #include "configuration.h"
+#include "controller.h"
+
+Controller ctrl;
 
 #define DEBUG
 #define SEND_TIME 20000
@@ -34,6 +37,8 @@ void Operational::initSystem()
     EEPROM.begin(512);
     
     configs.loadConfiguration();
+
+    ctrl.initController();
 
     WiFi.disconnect();
     delay(200);
@@ -102,6 +107,10 @@ void Operational::callback(char* topic, byte* payload, unsigned int length)
 {
     payload[length] = '\0';
     String strMsg = String((char*) payload);
+
+    float convert = strMsg.toFloat();
+
+    ctrl.monitorController(convert);
 
     #ifdef DEBUG
     Serial.print("Mensagem chegou do tópico ");
