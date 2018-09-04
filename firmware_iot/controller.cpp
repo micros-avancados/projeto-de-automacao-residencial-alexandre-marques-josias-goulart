@@ -30,7 +30,7 @@ void Controller::initController()
 
 void Controller::monitorController(float temp)
 {
-    if(temp < weather && contOn == 1)
+    if(temp > weather && contOn == 1)
     {
         irsend.sendRaw(irLiga, sizeof(irLiga) / sizeof(irLiga), khz); //Note the approach used to automatically calculate the size of the array.
         irsend.sendRaw(irLiga, sizeof(irLiga) / sizeof(irLiga), khz); //Note the approach used to automatically calculate the size of the array.
